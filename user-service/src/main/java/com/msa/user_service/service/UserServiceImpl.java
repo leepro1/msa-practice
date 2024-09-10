@@ -6,6 +6,7 @@ import com.msa.user_service.data.entity.User;
 import com.msa.user_service.repository.UserRepository;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserCreateResponse createUser(UserCreateRequest request) {
@@ -21,7 +23,7 @@ public class UserServiceImpl implements UserService {
             .userId(UUID.randomUUID().toString())
             .name(request.name())
             .email(request.email())
-            .password(request.password())
+            .password(passwordEncoder.encode(request.password()))
             .build();
 
         User savedUser = userRepository.save(user);

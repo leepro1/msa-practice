@@ -5,6 +5,8 @@ import com.msa.user_service.data.dto.request.UserCreateRequest;
 import com.msa.user_service.data.dto.response.UserCreateResponse;
 import com.msa.user_service.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,8 +32,11 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public UserCreateResponse createUser(@RequestBody UserCreateRequest request) {
-        return userService.createUser(request);
+    public ResponseEntity<UserCreateResponse> createUser(@RequestBody UserCreateRequest request) {
+
+        UserCreateResponse data = userService.createUser(request);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(data);
     }
 
 }
