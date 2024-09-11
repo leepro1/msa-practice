@@ -1,7 +1,7 @@
 package com.msa.user_service.service;
 
-import com.msa.user_service.data.dto.request.UserCreateRequest;
-import com.msa.user_service.data.dto.response.UserCreateResponse;
+import com.msa.user_service.dto.request.UserCreateRequest;
+import com.msa.user_service.dto.response.UserCreateResponse;
 
 public interface UserService {
 

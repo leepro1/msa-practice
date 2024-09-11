@@ -1,6 +1,6 @@
 package com.msa.user_service.repository;
 
-import com.msa.user_service.data.entity.User;
+import com.msa.user_service.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

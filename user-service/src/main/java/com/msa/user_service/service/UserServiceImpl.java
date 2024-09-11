@@ -1,8 +1,8 @@
 package com.msa.user_service.service;
 
-import com.msa.user_service.data.dto.request.UserCreateRequest;
-import com.msa.user_service.data.dto.response.UserCreateResponse;
-import com.msa.user_service.data.entity.User;
+import com.msa.user_service.dto.request.UserCreateRequest;
+import com.msa.user_service.dto.response.UserCreateResponse;
+import com.msa.user_service.entity.User;
 import com.msa.user_service.repository.UserRepository;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;

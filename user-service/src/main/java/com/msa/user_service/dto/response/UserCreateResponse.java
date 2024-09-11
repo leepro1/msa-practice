@@ -1,6 +1,6 @@
-package com.msa.user_service.data.dto.response;
+package com.msa.user_service.dto.response;
 
-import com.msa.user_service.data.entity.User;
+import com.msa.user_service.entity.User;
 import java.util.Date;
 import lombok.Builder;
 

@@ -1,10 +1,10 @@
 package com.msa.user_service.controller;
 
-import com.msa.user_service.data.Greeting;
-import com.msa.user_service.data.dto.request.UserCreateRequest;
-import com.msa.user_service.data.dto.response.UserCreateResponse;
+import com.msa.user_service.dto.request.UserCreateRequest;
+import com.msa.user_service.dto.response.UserCreateResponse;
 import com.msa.user_service.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,17 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final Greeting greeting;
+    private final Environment env;
     private final UserService userService;
 
     @GetMapping("health-check")
     public String status() {
-        return "It's Working in User Service";
+        return String.format("It's Working in User Service On PORT %s",
+            env.getProperty("local.server.port"));
     }
 
     @GetMapping("welcome")
     public String welcome() {
-        return greeting.getMessage();
+        return env.getProperty("greeting.welcome");
     }
 
     @PostMapping("/users")

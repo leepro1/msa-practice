@@ -1,4 +1,4 @@
-package com.msa.user_service.data.entity;
+package com.msa.user_service.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
