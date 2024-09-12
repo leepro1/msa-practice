@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
 import java.util.Date;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -42,8 +43,7 @@ public class Order {
     private String userId;
 
     @Column(nullable = false, updatable = false)
-    @ColumnDefault(value = "CURRENT_TIMESTAMP")
-    private Date createdAt;
+    private LocalDate createdAt;
 
     @Builder
     public Order(String productId, Integer quantity, Integer unitPrice, Integer totalPrice, String orderId, String userId) {
@@ -53,6 +53,7 @@ public class Order {
         this.totalPrice = totalPrice;
         this.orderId = orderId;
         this.userId = userId;
+        createdAt = LocalDate.now();
     }
 
 }

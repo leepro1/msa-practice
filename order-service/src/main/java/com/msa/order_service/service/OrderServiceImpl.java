@@ -18,12 +18,12 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
 
     @Override
-    public OrderResponse createOrder(OrderRequest request) {
+    public OrderResponse createOrder(String userId, OrderRequest request) {
 
         Order order = Order.builder()
 
             .orderId(UUID.randomUUID().toString())
-            .userId(request.userId())
+            .userId(userId)
             .productId(request.productId())
             .unitPrice(request.unitPrice())
             .quantity(request.quantity())

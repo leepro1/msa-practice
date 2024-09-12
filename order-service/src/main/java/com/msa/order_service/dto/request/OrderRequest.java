@@ -4,10 +4,8 @@ public record OrderRequest(
 
     String productId,
     Integer quantity,
-    Integer unitPrice,
-
-    String userId
-
+    Integer unitPrice
+    
 ) {
 
 }

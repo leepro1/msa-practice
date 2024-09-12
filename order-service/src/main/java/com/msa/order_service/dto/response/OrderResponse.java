@@ -1,6 +1,7 @@
 package com.msa.order_service.dto.response;
 
 import com.msa.order_service.entity.Order;
+import java.time.LocalDate;
 import java.util.Date;
 import lombok.Builder;
 
@@ -11,7 +12,7 @@ public record OrderResponse(
     Integer quantity,
     Integer unitPrice,
     Integer totalPrice,
-    Date createdAt,
+    LocalDate createdAt,
 
     String orderId,
     String userId

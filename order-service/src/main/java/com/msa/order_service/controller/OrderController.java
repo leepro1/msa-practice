@@ -38,10 +38,7 @@ public class OrderController {
     public ResponseEntity<OrderResponse> createOrder(@PathVariable("userId") String userId,
         @RequestBody OrderRequest request) {
 
-        OrderRequest updatedRequest = new OrderRequest(request.productId(),
-            request.quantity(), request.unitPrice(), userId);
-
-        OrderResponse data = orderService.createOrder(updatedRequest);
+        OrderResponse data = orderService.createOrder(userId, request);
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
