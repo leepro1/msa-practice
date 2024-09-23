@@ -5,6 +5,7 @@ import static com.msa.user_service.constant.SECURITY_SET.*;
 
 import com.msa.user_service.exception.CustomAccessDeniedHandler;
 import com.msa.user_service.exception.CustomAuthenticationEntryPoint;
+import com.msa.user_service.filter.CustomLogoutFilter;
 import com.msa.user_service.filter.JWTFilter;
 import com.msa.user_service.filter.LoginFilter;
 import com.msa.user_service.service.RefreshServiceImpl;
@@ -20,6 +21,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -85,6 +87,10 @@ public class SecurityConfig {
 
             .addFilterBefore(
                 new JWTFilter(jwtUtil), LoginFilter.class
+            )
+
+            .addFilterBefore(
+                new CustomLogoutFilter(jwtUtil, refreshService), LogoutFilter.class
             )
 
             .sessionManagement((session) -> session
