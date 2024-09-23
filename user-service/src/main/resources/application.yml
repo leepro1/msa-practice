@@ -26,6 +26,10 @@ spring:
         dialect: org.hibernate.dialect.H2Dialect
         format_sql: true
         show_sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
 
 eureka:
   instance:
