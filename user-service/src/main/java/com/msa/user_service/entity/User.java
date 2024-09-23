@@ -43,4 +43,9 @@ public class User {
         this.password = password;
         this.createdAt = new Date();
     }
+
+    public User(String userId, String username) {
+        this.userId = userId;
+        this.name = username;
+    }
 }

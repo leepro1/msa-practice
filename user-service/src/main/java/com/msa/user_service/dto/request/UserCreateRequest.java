@@ -11,7 +11,6 @@ public record UserCreateRequest(
     String email,
 
     @NotNull(message = "이름은 필수 입력 사항입니다.")
-
     String name,
 
     @NotNull(message = "비밀번호는 필수 입력 사항입니다.")
