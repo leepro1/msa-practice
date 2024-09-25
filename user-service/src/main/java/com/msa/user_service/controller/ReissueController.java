@@ -27,7 +27,7 @@ public class ReissueController {
     private final JWTUtil jwtUtil;
     private final RefreshService refreshService;
 
-    @PostMapping("/api/reissue")
+    @PostMapping("/reissue")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> reissue(HttpServletRequest request, HttpServletResponse response) {
 

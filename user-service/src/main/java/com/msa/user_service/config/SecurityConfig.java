@@ -6,7 +6,6 @@ import static com.msa.user_service.constant.SECURITY_SET.*;
 import com.msa.user_service.exception.CustomAccessDeniedHandler;
 import com.msa.user_service.exception.CustomAuthenticationEntryPoint;
 import com.msa.user_service.filter.CustomLogoutFilter;
-import com.msa.user_service.filter.JWTFilter;
 import com.msa.user_service.filter.LoginFilter;
 import com.msa.user_service.service.RefreshServiceImpl;
 import com.msa.user_service.util.JWTUtil;
@@ -83,10 +82,6 @@ public class SecurityConfig {
                 new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil,
                     refreshService),
                 UsernamePasswordAuthenticationFilter.class
-            )
-
-            .addFilterBefore(
-                new JWTFilter(jwtUtil), LoginFilter.class
             )
 
             .addFilterBefore(

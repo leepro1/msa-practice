@@ -11,6 +11,9 @@ eureka:
 spring:
   application:
     name: apigateway-service
+  jwt:
+    secret: 1kDPS1KxEX~BF2SAv66A=m!!B|Anx9{^$5x9oyO7]=MG&I.|CI:Xj|ZA(51KGOXY
+
   cloud:
     gateway:
       default-filters:
@@ -32,7 +35,6 @@ spring:
             - Path=/user-service/login
             - Method=POST
           filters:
-            - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
 
         - id: user-service
@@ -42,6 +44,7 @@ spring:
             - Method=POST
           filters:
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
 
         - id: user-service
           uri: lb://USER-SERVICE
@@ -49,7 +52,6 @@ spring:
             - Path=/user-service/users
             - Method=POST
           filters:
-            - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
 
         - id: user-service
@@ -58,13 +60,23 @@ spring:
             - Path=/user-service/**
             - Method=GET
           filters:
-            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/reissue
+            - Method=GET
+          filters:
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
 
         - id: catalog-service
           uri: lb://CATALOG-SERVICE
           predicates:
             - Path=/catalog-service/**
+          filters:
+            - AuthorizationHeaderFilter
 
         - id: order-service
           uri: lb://ORDER-SERVICE
