@@ -61,7 +61,7 @@ spring:
             - Method=GET
           filters:
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
-            - AuthorizationHeaderFilter
+#            - AuthorizationHeaderFilter
 
         - id: user-service
           uri: lb://USER-SERVICE

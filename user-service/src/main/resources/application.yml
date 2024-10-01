@@ -47,3 +47,6 @@ eureka:
 
 greeting:
   welcome: "welcome, this is user-service"
+
+order-service:
+  url: http://localhost:8000/order-service/%s/orders
