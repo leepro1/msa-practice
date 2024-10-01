@@ -1,5 +1,6 @@
 package com.msa.user_service.service;
 
+import com.msa.user_service.client.OrderServiceClient;
 import com.msa.user_service.dto.request.UserCreateRequest;
 import com.msa.user_service.dto.response.OrderResponse;
 import com.msa.user_service.dto.response.UserCreateResponse;
@@ -10,13 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +21,8 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final RestTemplate restTemplate;
+    //    private final RestTemplate restTemplate;
+    private final OrderServiceClient orderServiceClient;
     private final Environment env;
 
     @Override
@@ -48,15 +46,16 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByUserId(userId)
             .orElseThrow(() -> new RuntimeException("User not found"));
 
-        String orderURL = String.format(env.getProperty("order-service.url"),
-            userId); // 이것도 구성파일로 별도로 두자
+//        String orderURL = String.format(env.getProperty("order-service.url"),
+//            userId); // 이것도 구성파일로 별도로 두자
 
-        ResponseEntity<List<OrderResponse>> orderResponseList = restTemplate.exchange(orderURL,
-            HttpMethod.GET, null,
-            new ParameterizedTypeReference<List<OrderResponse>>() {
-            });
+//        ResponseEntity<List<OrderResponse>> orderResponseList = restTemplate.exchange(orderURL,
+//            HttpMethod.GET, null,
+//            new ParameterizedTypeReference<List<OrderResponse>>() {
+//            });
+//        List<OrderResponse> orders = orderResponseList.getBody();
 
-        List<OrderResponse> orders = orderResponseList.getBody();
+        List<OrderResponse> orders = orderServiceClient.getOrders(userId);
 
         return UserResponse.of(user, orders);
     }
