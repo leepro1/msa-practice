@@ -36,7 +36,7 @@ public class UserController {
 
     }
 
-    @GetMapping("users/welcome")
+    @GetMapping("/users/welcome")
     public String welcome(@RequestHeader("X-User-Id") String userId,
         @RequestHeader("X-Username") String username) {
 //        return env.getProperty("greeting.welcome");
