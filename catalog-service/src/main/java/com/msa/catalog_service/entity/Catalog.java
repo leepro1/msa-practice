@@ -49,4 +49,9 @@ public class Catalog implements Serializable {
         this.unitPrice = unitPrice;
     }
 
+    public int updateStock(Integer quantity) {
+        this.stock -= quantity;
+        return stock;
+    }
+
 }
