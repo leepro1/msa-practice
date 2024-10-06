@@ -92,9 +92,6 @@ spring:
           uri: lb://CATALOG-SERVICE
           predicates:
             - Path=/catalog-service/**
-          filters:
-            - AuthorizationHeaderFilter
-
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
