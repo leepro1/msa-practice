@@ -2,6 +2,7 @@ package com.msa.order_service.controller;
 
 import com.msa.order_service.dto.request.OrderRequest;
 import com.msa.order_service.dto.response.OrderResponse;
+import com.msa.order_service.message.KafkaProducer;
 import com.msa.order_service.service.OrderService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ public class OrderController {
 
     private final Environment env;
     private final OrderService orderService;
+    private final KafkaProducer kafkaProducer;
 
     @GetMapping("/health-check")
     public String status() {
@@ -39,6 +41,8 @@ public class OrderController {
         @RequestBody OrderRequest request) {
 
         OrderResponse data = orderService.createOrder(userId, request);
+
+        kafkaProducer.send("example-catalog-topic", data);
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
