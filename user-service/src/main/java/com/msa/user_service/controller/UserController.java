@@ -31,7 +31,7 @@ public class UserController {
         return String.format("env tester"
             + ". port(local.server.port)= " + env.getProperty("local.server.port")
             + ". port(server.port)= " + env.getProperty("server.port")
-            + ". token secret= " + env.getProperty("spring.jwt.secret")
+            + ". token secret= " + env.getProperty("jwt.secret")
         );
 
     }

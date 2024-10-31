@@ -5,9 +5,6 @@ spring:
   application:
     name: user-service
 
-  jwt:
-    secret: 1kDPS1KxEX~BF2SAv66A=m!!B|Anx9{^$5x9oyO7]=MG&I.|CI:Xj|ZA(51KGOXY
-
   cloud:
 #    config:
 #      uri: http://localhost:8888  # Config 서버 URI
