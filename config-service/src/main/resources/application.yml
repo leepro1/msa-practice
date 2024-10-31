@@ -5,8 +5,20 @@ spring:
   application:
     name: config-server
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
   cloud:
     config:
       server:
         git:
           uri: file://C:/Users/SSAFY/Desktop/git-local-repo
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httptrace, busrefresh

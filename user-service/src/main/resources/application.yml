@@ -5,6 +5,12 @@ spring:
   application:
     name: user-service
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
   cloud:
 #    config:
 #      uri: http://localhost:8888  # Config 서버 URI
@@ -58,7 +64,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh, health, beans
+        include: refresh, health, beans, httptrace, busrefresh
 
 logging:
   level:
