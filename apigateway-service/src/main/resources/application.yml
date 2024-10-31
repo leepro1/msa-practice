@@ -8,11 +8,14 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httptrace
 spring:
   application:
     name: apigateway-service
-  jwt:
-    secret: 1kDPS1KxEX~BF2SAv66A=m!!B|Anx9{^$5x9oyO7]=MG&I.|CI:Xj|ZA(51KGOXY
 
   cloud:
     gateway:

@@ -54,6 +54,12 @@ order-service:
   exception:
     orders_is_empty: User's orders is empty
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans
+
 logging:
   level:
     com.msa.userservice.client: DEBUG

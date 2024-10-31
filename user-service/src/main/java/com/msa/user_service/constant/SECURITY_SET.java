@@ -5,7 +5,9 @@ public final class SECURITY_SET {
     public static final String[] PERMITALL_URL_PATTERNS = {
 
         "/h2-console/**",
-        "/users/**"
+        "/users/**",
+
+        "/actuator/**"
 
     };
 
